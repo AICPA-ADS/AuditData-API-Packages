@@ -1,0 +1,5 @@
+_spec/
+dist/
+build/
+js/
+openapi-generator-cli.jar

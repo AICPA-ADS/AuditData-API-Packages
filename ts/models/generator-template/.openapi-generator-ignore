@@ -1,0 +1,10 @@
+apis/
+auth/
+http/
+types/
+configuration.ts
+git_push.sh
+middleware.ts
+rxjsStub.ts
+servers.ts
+util.ts

@@ -1,0 +1,21 @@
+{
+  "name": "{{npmName}}",
+  "version": "{{npmVersion}}",
+  "description": "{{projectDescription}}",
+  "author": "OpenAPI-Generator Contributors",
+  "keywords": [
+    "fetch",
+    "typescript",
+    "openapi-client",
+    "openapi-generator"
+  ],
+  "license": "{{licenseName}}",
+  "main": "./index.js",
+  "typings": "./index.d.ts",
+  "dependencies": {},
+{{#npmRepository}}
+  "publishConfig":{
+    "registry":"{{npmRepository}}"
+  }
+{{/npmRepository}}
+}
