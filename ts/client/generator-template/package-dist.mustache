@@ -1,0 +1,21 @@
+{
+  "name": "{{npmName}}",
+  "version": "{{npmVersion}}",
+  "description": "{{projectDescription}}",
+  "author": "AICPA Audit Data Standards Team",
+  "keywords": [
+    "aicpa",
+    "audit data standards"
+  ],
+  "license": "{{licenseName}}",
+  "main": "./index.js",
+  "typings": "./index.d.ts",
+  "dependencies": {
+    "@aicpa-ads/auditdata-models": "{{npmVersion}}"
+  },
+{{#npmRepository}}
+  "publishConfig":{
+    "registry":"{{npmRepository}}"
+  }
+{{/npmRepository}}
+}

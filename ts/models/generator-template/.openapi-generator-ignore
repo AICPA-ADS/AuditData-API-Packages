@@ -2,6 +2,7 @@ apis/
 auth/
 http/
 types/
+models/ObjectSerializer.ts
 configuration.ts
 git_push.sh
 middleware.ts

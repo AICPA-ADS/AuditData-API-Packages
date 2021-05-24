@@ -16,18 +16,32 @@ if [ -r $SPEC_LOCATION ]; then
     SPEC_LOCATION="_spec/AuditDataStandard.yml"
 fi
 
-mkdir -p build/ts
-cp ts/models/generator-template/.openapi-generator-ignore build/ts
+mkdir -p build/ts-models
+mkdir -p build/ts-client
+cp ts/models/generator-template/.openapi-generator-ignore build/ts-models
+cp ts/client/generator-template/.openapi-generator-ignore build/ts-client
 
 echo "Building from spec: $SPEC_LOCATION"
 
 java -jar ./openapi-generator-cli.jar generate -i $SPEC_LOCATION -g typescript -t ts/models/generator-template \
-    -c ts/config.yaml -o build/ts --additional-properties=npmVersion=$PACKAGE_VERSION
+    -c ts/models/config.yaml -o build/ts-models --additional-properties=npmVersion=$PACKAGE_VERSION
 
-rm -rf dist/js/models
-mkdir -p dist/js/models
-cd build/ts
+## Build Models
+rm -rf dist/js/@aicpa-ads/audidata-model
+mkdir -p dist/js/@aicpa-ads/audidata-model
+cd build/ts-models
 npm i && npm run build
 cd ../../
+mv build/ts-models/dist/* dist/js/@aicpa-ads/audidata-model
 
-mv build/ts/dist/* dist/js/models
+## Build API Client
+java -jar ./openapi-generator-cli.jar generate -i $SPEC_LOCATION -g typescript -t ts/client/generator-template \
+    -c ts/client/config.yaml -o build/ts-client --additional-properties=npmVersion=$PACKAGE_VERSION
+
+rm -rf dist/js/@aicpa-ads/audidata-client
+mkdir -p dist/js/@aicpa-ads/audidata-client
+cd build/ts-client
+npm i 
+npm run build
+cd ../../
+mv build/ts-client/dist/* dist/js/@aicpa-ads/audidata-client
