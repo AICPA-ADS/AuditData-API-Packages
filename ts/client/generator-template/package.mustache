@@ -16,7 +16,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "{{modelPackageRef}}": "file:../../dist/js/@aicpa-ads/audidata-model",
+    "{{modelPackageRef}}": "{{privatePackageRepo}}{{modelPackageRef}}",
     {{#frameworks}}
       {{#fetch-api}}
         {{#platforms}}
@@ -25,7 +25,7 @@
     "@types/node-fetch": "^2.5.7",
           {{/node}}
           {{#browser}}
-    "whatwg-fetch": "^3.0.0",
+    "isomorphic-fetch": "^3.0.0",
           {{/browser}}
         {{/platforms}}
       {{/fetch-api}}
@@ -47,8 +47,8 @@
     {{#useInversify}}
     "inversify": "^5.0.1",
     {{/useInversify}}
-    "es6-promise": "^4.2.4",
-    "url-parse": "^1.4.3"
+    "es6-promise": "^4.2.8",
+    "url-parse": "^1.5.1"
   },
   "devDependencies": {
     "typescript": "^3.9.3"

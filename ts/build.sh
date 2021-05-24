@@ -27,21 +27,21 @@ java -jar ./openapi-generator-cli.jar generate -i $SPEC_LOCATION -g typescript -
     -c ts/models/config.yaml -o build/ts-models --additional-properties=npmVersion=$PACKAGE_VERSION
 
 ## Build Models
-rm -rf dist/js/@aicpa-ads/audidata-model
-mkdir -p dist/js/@aicpa-ads/audidata-model
+rm -rf dist/js/@aicpa-ads/auditdata-model
+mkdir -p dist/js/@aicpa-ads/auditdata-model
 cd build/ts-models
 npm i && npm run build
 cd ../../
-mv build/ts-models/dist/* dist/js/@aicpa-ads/audidata-model
+mv build/ts-models/dist/* dist/js/@aicpa-ads/auditdata-model
 
 ## Build API Client
 java -jar ./openapi-generator-cli.jar generate -i $SPEC_LOCATION -g typescript -t ts/client/generator-template \
-    -c ts/client/config.yaml -o build/ts-client --additional-properties=npmVersion=$PACKAGE_VERSION
+    -c ts/client/config.yaml -o build/ts-client --additional-properties=npmVersion=$PACKAGE_VERSION,platform=browser
 
-rm -rf dist/js/@aicpa-ads/audidata-client
-mkdir -p dist/js/@aicpa-ads/audidata-client
+rm -rf dist/js/@aicpa-ads/auditdata-client
+mkdir -p dist/js/@aicpa-ads/auditdata-client
 cd build/ts-client
 npm i 
 npm run build
 cd ../../
-mv build/ts-client/dist/* dist/js/@aicpa-ads/audidata-client
+mv build/ts-client/dist/* dist/js/@aicpa-ads/auditdata-client

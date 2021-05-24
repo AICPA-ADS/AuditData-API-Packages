@@ -6,6 +6,7 @@ additionalProperties:
   infoUrl: https://github.com/AICPA-ADS/AuditData-API
   npmRepository: https://registry.npmjs.org
   modelPackageRef: "@aicpa-ads/auditdata-model"
+  privatePackageRepo: "file:../../dist/js/"
 
 files:
   package-dist.mustache:

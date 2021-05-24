@@ -11,7 +11,10 @@
   "main": "./index.js",
   "typings": "./index.d.ts",
   "dependencies": {
-    "@aicpa-ads/auditdata-models": "{{npmVersion}}"
+    "{{modelPackageRef}}": "{{npmVersion}}",
+    "isomorphic-fetch": "^3.0.0",
+    "es6-promise": "^4.2.8",
+    "url-parse": "^1.5.1"
   },
 {{#npmRepository}}
   "publishConfig":{

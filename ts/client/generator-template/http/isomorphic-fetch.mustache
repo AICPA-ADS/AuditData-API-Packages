@@ -5,7 +5,7 @@ import { from, Observable } from {{#useRxJS}}'rxjs'{{/useRxJS}}{{^useRxJS}}'../r
 import fetch from "node-fetch";
 {{/node}}
 {{#browser}}
-import "whatwg-fetch";
+import "isomorphic-fetch";
 {{/browser}}
 {{/platforms}}
 
