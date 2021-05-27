@@ -8,3 +8,30 @@ Navigate to the folder of your consuming project and run one the following comma
 ```
 npm install {{npmName}}@{{npmVersion}} --save
 ```
+
+### Usage
+
+API client classes need to be provided with access credentials to the backend service. Obtaining service-specific credentials
+is outside of the scope of this library. At this point, this API client has been tested with backends supporting Bearer authentication.
+
+Use the following snippet to get started:
+
+```js
+const { BaseModuleApi, GeneralLedgerModuleApi, 
+        createConfiguration, ServerConfiguration, 
+        ImplicitAuthAuthentication } = require("@aicpa-ads/auditdata-client")
+
+let apiConfig = createConfiguration({
+        baseServer:  new ServerConfiguration(process.env.AuditDataApiUrl 
+                        || "https://localhost:5001/AuditDataOpenAPI/v1.0"),
+        authMethods: {
+            "bearerAuth": new ImplicitAuthAuthentication("<access token>")
+        }
+    })
+
+let baseApi = new BaseModuleApi(apiConfig);
+let glApi = new GeneralLedgerModuleApi(apiConfig);
+
+let entities = await baseApi.getEntities();
+let tb = await glApi.getChartAccounts(entities[0].entityIdentifier);
+```
