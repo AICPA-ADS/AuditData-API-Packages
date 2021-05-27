@@ -8,7 +8,7 @@
     {{#enumVars}}
     {{#-first}}
     {{#isString}}
-    [JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof({{packageName}}.Serialization.OpenAPIJsonStringEnumConverter))]
     {{/isString}}
     {{/-first}}
     {{/enumVars}}

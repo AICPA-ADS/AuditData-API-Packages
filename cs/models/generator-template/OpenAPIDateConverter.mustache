@@ -1,4 +1,7 @@
 {{>partial_header}}
+using System;
+using System.Diagnostics;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace {{packageName}}.Serialization
@@ -6,16 +9,19 @@ namespace {{packageName}}.Serialization
     /// <summary>
     /// Formatter for 'date' openapi formats ss defined by full-date - RFC3339
     /// see https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#data-types
+    /// NB. This converter is not intended for converting the 'date-time' format
     /// </summary>
-    public class OpenAPIDateConverter : IsoDateTimeConverter
+    public class OpenAPIDateConverter : JsonConverter<DateTime>
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OpenAPIDateConverter" /> class.
-        /// </summary>
-        public OpenAPIDateConverter()
+        public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            // full-date   = date-fullyear "-" date-month "-" date-mday
-            DateTimeFormat = "yyyy-MM-dd";
+            Debug.Assert(typeToConvert == typeof(DateTime));
+            return DateTime.Parse(reader.GetString());
+        }
+
+        public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToString("yyyy-MM-dd"));
         }
     }
 }

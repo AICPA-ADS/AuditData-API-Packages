@@ -1,5 +1,6 @@
 docs/
-src/Org.Aicpa.AuditData.Model/Api/
-src/Org.Aicpa.AuditData.Model/Client/
-src/Org.Aicpa.AuditData.Model.Test/Api/
+src/Org.Aicpa.AuditData/Api/
+src/Org.Aicpa.AuditData/Client/
+src/Org.Aicpa.AuditData/Model/AbstractOpenAPISchema.cs
+src/Org.Aicpa.AuditData.Test/
 git_push.sh

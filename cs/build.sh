@@ -24,6 +24,9 @@ echo "Building from spec: $SPEC_LOCATION"
 
 java -jar ./openapi-generator-cli.jar generate -i $SPEC_LOCATION -g csharp-netcore -t cs/models/generator-template \
     -c cs/models/config.yaml -o build/cs-models --additional-properties=packageVersion=$PACKAGE_VERSION
+# couldn't figure out the way to configure the generator to output decimals (not supported in OAS yet)
+find build/cs-models/src -type f -name "*.cs" -exec sed -i 's/float/decimal/g' {} \;
+
 
 return
 ## Build Models
