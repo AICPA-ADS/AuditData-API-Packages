@@ -1,0 +1,22 @@
+additionalProperties:
+  packageName:  Org.Aicpa.AuditData.Model  
+  releaseNote: The purpose of the Audit Data API Working Group (Working Group) is to define an API standard for the transfer of financial audit data between two systems. The standard is open and licensed under an MIT license. Participation in the Working Group and contributions are open to all interested parties. The API standard intends to build upon the standards already developed by the AICPA  and to use the terms defined in that standard where applicable.
+  licenseId:  MIT
+  _npmRepository: https://registry.npmjs.org  
+  gitUserId: AICPA-ADS
+  getRepoId: AuditData-API
+
+  netCoreProjectFile: true
+  useRestSharp: false
+  validatable: false
+  targetFramework: netstandard2.0
+  testTargetFramework: netcoreapp5.0
+
+files:
+  README.mustache:
+    destinationFilename: README.md
+  OpenAPIDateConverter.mustache:
+    destinationFilename: src/Org.Aicpa.AuditData.Model/Serialization/OpenAPIDateConverter.cs
+
+
+  

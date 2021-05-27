@@ -1,0 +1,5 @@
+docs/
+src/Org.Aicpa.AuditData.Model/Api/
+src/Org.Aicpa.AuditData.Model/Client/
+src/Org.Aicpa.AuditData.Model.Test/Api/
+git_push.sh
