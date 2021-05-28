@@ -11,7 +11,7 @@ if [ ! -f ./openapi-generator-cli.jar ]; then
     wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.1.1/openapi-generator-cli-5.1.1.jar -O ./openapi-generator-cli.jar
 fi
 
-if [ -r SPEC_LOCATION ]; then
+if [ ! -r SPEC_LOCATION ]; then
     git clone --depth 1 --branch $BRANCH_NAME https://github.com/AICPA-ADS/AuditData-API.git _spec &> /dev/null
     SPEC_LOCATION="_spec/AuditDataStandard.yml"
 fi
