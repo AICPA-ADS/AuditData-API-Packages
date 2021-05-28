@@ -33,5 +33,5 @@ let baseApi = new BaseModuleApi(apiConfig);
 let glApi = new GeneralLedgerModuleApi(apiConfig);
 
 let entities = await baseApi.getEntities();
-let tb = await glApi.getChartAccounts(entities[0].entityIdentifier);
+let accts = await glApi.getChartAccounts(entities[0].entityIdentifier);
 ```
