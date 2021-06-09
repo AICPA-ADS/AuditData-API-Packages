@@ -4,3 +4,4 @@ src/Org.Aicpa.AuditData/Client/
 src/Org.Aicpa.AuditData/Model/AbstractOpenAPISchema.cs
 src/Org.Aicpa.AuditData.Test/
 git_push.sh
+src/**/*AllOf.cs
