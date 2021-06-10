@@ -53,9 +53,8 @@ get_generated_model_package_name(){
 build_package() {   
     mkdir -p "dist/js" 
     pushd "$BUILD_DIR/$LANG-models/combined"
-    npm i && npm run build
-    cd dist
-    npm pack
+    npm i && npm run build \
+        && cd dist && npm pack
     popd
     mv "$BUILD_DIR/$LANG-models/combined/dist"/*.tgz "dist/js"
 }

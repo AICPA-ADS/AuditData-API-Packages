@@ -14,7 +14,7 @@ download_spec
 mkdir -p "$BUILD_DIR/$LANG-client"
 setup_build_folder
 
-convert_spec "combined" "/AuditDataStandard.yml" "$PACKAGE_NAME" 
+convert_spec "" "/AuditDataStandard.yml" "$PACKAGE_NAME" 
 
 post_conversion_cleanup
 
