@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFramework{{#multiTarget}}s{{/multiTarget}}>{{targetFramework}}</TargetFramework{{#multiTarget}}s{{/multiTarget}}>
+    <AssemblyName>{{packageName}}</AssemblyName>
+    <PackageId>{{packageName}}</PackageId>
+    <OutputType>Library</OutputType>
+    <Authors>{{packageAuthors}}</Authors>
+    <Company>{{packageCompany}}</Company>
+    <AssemblyTitle>{{packageTitle}}</AssemblyTitle>
+    <Description>{{packageDescription}}</Description>
+    <Copyright>{{packageCopyright}}</Copyright>
+    <RootNamespace>{{packageName}}</RootNamespace>
+    <Version>{{packageVersion}}</Version>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\{{packageName}}.xml</DocumentationFile>{{#licenseId}}
+    <PackageLicenseExpression>{{licenseId}}</PackageLicenseExpression>{{/licenseId}}
+    <RepositoryUrl>{{sourceRepositoryUrl}}</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>{{#releaseNote}}
+    <PackageReleaseNotes>{{releaseNote}}</PackageReleaseNotes>{{/releaseNote}}{{#packageTags}}
+    <PackageTags>{{{packageTags}}}</PackageTags>{{/packageTags}}
+    <RestoreAdditionalProjectSources>{{privatePackageRepo}}</RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="{{modelPackageName}}" Version="{{packageVersion}}" />
+    {{#useCompareNetObjects}}
+    <PackageReference Include="CompareNETObjects" Version="4.61.0" />
+    {{/useCompareNetObjects}}
+    <PackageReference Include="System.Text.Json" Version="5.0.2" />
+    {{#validatable}}
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    {{/validatable}}
+     {{#useRestSharp}}
+    <PackageReference Include="RestSharp" Version="106.11.7" />        
+      {{/useRestSharp}}
+      {{#supportsRetry}}
+    <PackageReference Include="Polly" Version="7.2.1" />
+      {{/supportsRetry}}
+  </ItemGroup>
+
+</Project>

@@ -71,4 +71,18 @@ namespace {{packageName}}.Serialization
             return _baseConverter.CreateConverter(typeToConvert, options);
         }
     }
+
+    public static class SerializerOptions
+    {
+        public static System.Text.Json.JsonSerializerOptions GetDefault()
+        {
+            var ret = new System.Text.Json.JsonSerializerOptions()
+            {
+                // TODO Configure serialization to use DataMember attrib
+                PropertyNamingPolicy = null,
+            };
+            ret.Converters.Add(new Org.Aicpa.AuditData.Serialization.OpenAPIJsonStringEnumConverter(allowIntegerValues: false));
+            return ret;
+        }
+    }
 }

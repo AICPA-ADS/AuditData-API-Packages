@@ -1,0 +1,5 @@
+docs/
+src/**/Model/*
+git_push.sh
+src/**/*AllOf.cs
+src/**/OpenAPIDateConverter.cs

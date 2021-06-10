@@ -1,6 +1,6 @@
 
-PACKAGE_NAME="@aicpa-ads/auditdata-client"
-MODEL_PACKAGE_NAME="@aicpa-ads/auditdata-model"
+PACKAGE_NAME="Org.Aicpa.AuditData.Client"
+MODEL_PACKAGE_NAME="Org.Aicpa.AuditData"
 SHARED_TYPES=( )
 MODEL_PACKAGE_PATH="models"
 
@@ -11,13 +11,16 @@ setup_build_folder() {
 convert_spec () {
     mkdir -p "$BUILD_DIR/$LANG-client/$1"
     cp "$LANG/client/generator-template/.openapi-generator-ignore" "$BUILD_DIR/$LANG-client/$1/"
-    #rm -rf "$BUILD_DIR/$LANG-client/$1/$MODEL_PACKAGE_PATH"
-    java -jar ./openapi-generator-cli.jar generate -i "$SPEC_LOCATION/$2" -g typescript -t "$LANG/client/generator-template" \
-        -c "$LANG/client/config.yaml" -o "$BUILD_DIR/$LANG-client/$1" --additional-properties=npmVersion=$PACKAGE_VERSION,npmName=$3
-        #,modelPackage=$4
+
+    privatePackageRepo=$(realpath "dist/$LANG/.")
+
+    java -jar ./openapi-generator-cli.jar generate -i "$SPEC_LOCATION/$2" -g csharp-netcore -t "$LANG/client/generator-template" \
+        -c "$LANG/client/config.yaml" -o "$BUILD_DIR/$LANG-client/$1" \
+        --additional-properties=packageVersion=$PACKAGE_VERSION,packageName=$3,modelPackageName=$MODEL_PACKAGE_NAME,privatePackageRepo=$privatePackageRepo
 }
 
 post_conversion_cleanup () {
+    return
     pushd "$BUILD_DIR/$LANG-models/combined/dist/"
     files=($(find . -type f -name '*.d.ts' ! -name 'index.d.ts'))
     declare -A lookups
@@ -43,11 +46,9 @@ post_conversion_cleanup () {
 }
 
 build_package() { 
-    mkdir -p "dist/js" 
-    pushd "$BUILD_DIR/$LANG-client"
-    npm i && npm run build \
-        && cd dist && npm pack
+    pushd "$BUILD_DIR/$LANG-client/"
+    dotnet pack -c Release
     popd
-    mv "$BUILD_DIR/$LANG-client/dist"/*.tgz "dist/js"
+    mv "$BUILD_DIR/$LANG-client/src/$PACKAGE_NAME/bin/Release/"*.nupkg "dist/$LANG"
 }
 
