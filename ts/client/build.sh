@@ -37,7 +37,7 @@ post_conversion_cleanup () {
         for type in "${!lookups[@]}" ; do
             subst=${lookups[$type]}
             #echo $type $subst
-            sed -i "s~//__import__$type~import { $type } from '$MODEL_PACKAGE_NAME$subst'~g" "$file"
+            sed -i "s~//__import__$type//~import { $type } from '$MODEL_PACKAGE_NAME$subst'~g" "$file"
         done
     done
 }
